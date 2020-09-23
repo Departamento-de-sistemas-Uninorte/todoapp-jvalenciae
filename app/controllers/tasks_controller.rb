@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+    before_action :authenticate_user!
+
     def index
         @tasks = Task.all
     end
@@ -39,7 +41,7 @@ class TasksController < ApplicationController
 
     def destroy
         @task = Task.find(params[:id])
-        task.destroy
+        @task.destroy
         redirect_to tasks_path
     end
 
